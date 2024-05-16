@@ -1,0 +1,4 @@
+/__pycache__/
+*.dvi
+*.synctex.gz
+.DS_Store
