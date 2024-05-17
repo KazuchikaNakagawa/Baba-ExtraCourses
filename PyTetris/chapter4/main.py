@@ -1,9 +1,9 @@
 import pygame
-from tetris import Board
+from tetris2 import Board
 
 def main():
     # Create the board
-    board = Board(tile_size=30)
+    board = Board()
 
     # Initialize pygame
     pygame.init()

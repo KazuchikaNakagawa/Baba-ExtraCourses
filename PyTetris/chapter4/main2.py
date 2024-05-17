@@ -19,17 +19,6 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-        # key handling
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT]:
-            board.cursor.move_left()
-            pygame.time.wait(100)
-        if keys[pygame.K_RIGHT]:
-            board.cursor.move_right()
-            pygame.time.wait(100)
-        if keys[pygame.K_DOWN]:
-            board.cursor.move_down()
-            pygame.time.wait(100)
         # Update the display
         pygame.display.update()
 

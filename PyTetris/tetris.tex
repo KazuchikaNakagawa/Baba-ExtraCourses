@@ -247,18 +247,18 @@ Boardクラスは変数にscreenを持っていないので、画面に書くと
 \section{main関数を書き換える}
 \subsection{Boardクラスを使ってmain関数を書く}
 ここまで読んだら、main.pyを作ります。
-\lstinputlisting[title={main.py}, language=Python]{chapter3/main.py}
+\lstinputlisting[title={main.py}, language=Python]{chapter4/main.py}
 main関数が少し短くなったと思います。main関数が今までやっていた「盤面に合わせてブロックを書く→線を引く」という
 処理をBoardクラス（とそれが入った変数board）に分担したからです\footnote{ここが大事なのでテキストを読んでいない人はこの文を探してみてね}。
 でも、この状態ではまだ動きません。tetris.pyのクラスの中で作った関数がまだ「...」のまま残っていますね。実装しましょう。
 \subsection{Boardクラスを実装する}
-\lstinputlisting[title={tetris.pyを完成させる}, language=Python]{chapter3/tetris2_2.py}
+\lstinputlisting[title={tetris.pyを完成させる}, language=Python]{chapter4/tetris2_2.py}
 実行すると、一章と同じように動くはずです。
 
 \subsection{ブロックのサイズを変更できるようにする}
 ついでに、ブロックのサイズをmain関数から変更できるようにしましょう。
-\lstinputlisting[title={tetris.pyを改造する}, language=Python]{chapter3/tetris2_3.py}
-\lstinputlisting[title={main.pyを改造する}, language=Python]{chapter3/main2.py}
+\lstinputlisting[title={tetris.pyを改造する}, language=Python]{chapter4/tetris2_3.py}
+\lstinputlisting[title={main.pyを改造する}, language=Python]{chapter4/main2.py}
 「{board = Board(tile\_size=30)}」を変えることで、一マスのサイズを変更できます。
 ここまでできたら完璧です。
 
@@ -273,25 +273,25 @@ main関数が少し短くなったと思います。main関数が今までやっ
 \section{クラスの設計を練習する}
 \subsection{練習問題1}
 まずは以下のプログラムを動かしてみましょう。その後、クラスを使って書き換えてみてください。
-\lstinputlisting[title={練習問題1}, language=Python]{chapter3/bank_no_class.py}
+\lstinputlisting[title={練習問題1}, language=Python]{chapter4/bank_no_class.py}
 このwhile True:では、入力、コマンド確認、残高確認、出力の機能がすべて混ざっています。どういうふうに分離するといいでしょうか？
 \newpage
 \subsubsection{例}
-\lstinputlisting[title={練習問題1の解答例}, language=Python]{chapter3/bank.py}
+\lstinputlisting[title={練習問題1の解答例}, language=Python]{chapter4/bank.py}
 残高が足りているか確認するのは口座の役割に分担しました。また、残高と名前は別の変数でなく、一つのクラスにまとめました。
 同じものに関する情報（変数）は一つのクラスにまとめるのがおすすめです。
 
 \subsection{練習問題2}
 まずは以下のプログラムを動かしてみましょう。ゲームになっているので先生と一緒に遊んでみてください。
 原因が分かり次第修正します。
-\lstinputlisting[title={練習問題2}, language=Python]{chapter3/memory_game_no_class.py}
+\lstinputlisting[title={練習問題2}, language=Python]{chapter4/memory_game_no_class.py}
 クラスに分けるとどうなるでしょうか。作るクラスが一つとは限りません
 \footnote{2つ以上が正解と言いたいわけではありません。メンターさんは学校の先生と違ってプロじゃないので顔から考えていることがバレやすいです。
   でも、心を読まれて答えを見つけられると微妙な気持ちになります。担当のメンターさんも経験しているかもしれません。}。
 
 \newpage
 \subsubsection{例}
-\lstinputlisting[title={練習問題2の解答例}, language=Python]{chapter3/memory_game.py}
+\lstinputlisting[title={練習問題2の解答例}, language=Python]{chapter4/memory_game.py}
 クラスは複雑になりますが、42〜48行目は短く、分かりやすくなっています。Player()とするだけで入力欄が開くのは便利ですね
 \footnote{でも、設計的にはダメな場合もありますので安易にこうしてはいけません}。
 
@@ -363,7 +363,7 @@ screenに関してバグがあった時に、screenにアクセスするクラ�
 \subsection{Cursorクラスを定義する}
 tetris.pyにCursorクラスを追加します。
 初期状態は中央上側にカーソルがある必要があるので、\_\_init\_\_関数で初期位置を設定します。
-\lstinputlisting[title={Cursorクラスを作る}]{chapter4/tetris.py}
+\lstinputlisting[title={Cursorクラスを作る}]{chapter5/tetris.py}
 これだとBoardに直接変数を追加しても良さそうな気もしますが、別の機能は別のクラスに書く、を徹底しましょう。
 Boardクラスの\_\_init\_\_関数に「self.cursor = Cursor()」を追加していること、draw関数の最後に
 「カーソルの列に対し、BLACKのマスをGRAYにする」処理を入れていることに注意してください。
@@ -398,7 +398,7 @@ Cursorも同様です。今回は「キー入力を受け取るのはmain関数�
 
 \subsection{main関数でキー入力を受け取る}
 先ほど決めた通り、main関数でキー入力を受け取ることにします。
-\lstinputlisting[title={main関数でキー入力を受け取る}]{chapter4/main2.py}
+\lstinputlisting[title={main関数でキー入力を受け取る}]{chapter5/main2.py}
 矢印キーでカーソルを動かせるようになりました。pygame.time.wait(100)という見慣れない
 文があるかもしれませんが、これは100ミリ秒待つという意味です。mb.sleepと似ていますね。
 

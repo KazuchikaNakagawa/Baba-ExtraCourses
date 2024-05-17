@@ -1,9 +1,9 @@
 import pygame
-from tetris2 import Board
+from tetris import Board
 
 def main():
     # Create the board
-    board = Board()
+    board = Board(tile_size=30)
 
     # Initialize pygame
     pygame.init()
@@ -19,6 +19,17 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+        # key handling
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT]:
+            board.cursor.move_left()
+            pygame.time.wait(100)
+        if keys[pygame.K_RIGHT]:
+            board.cursor.move_right()
+            pygame.time.wait(100)
+        if keys[pygame.K_DOWN]:
+            board.cursor.move_down()
+            pygame.time.wait(100)
         # Update the display
         pygame.display.update()
 
