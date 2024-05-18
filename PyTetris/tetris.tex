@@ -232,15 +232,7 @@ car.run()
 今回はクラスを別ファイルに書いて、インポートする方法にしてみます。
 建築でfunctions.pyとmain.pyに分かれていたのと同じような感じです。
 まずはこれだけ作ってみましょう。ファイル名は「tetris.py」とし、以下のように書いてください。
-\begin{lstlisting}[caption={tetris.py},label=sample, language=Python]
-class Board:
-    def __init__(self):
-        ...
-    def draw(self, screen):
-        ...
-    def window_size(self):
-        ...
-\end{lstlisting}
+\lstinputlisting[title=teris.py]{chapter4/tetris.py}
 draw関数がscreenを引数にとっているのは、建築でmcを引数にとっていたのと似ています。
 Boardクラスは変数にscreenを持っていないので、画面に書くときは一度\textbf{画面を借りる}必要があります。
 試しに4行目の「, screen」を消して実行してみてください。「screen is undefined」みたいなエラーが出るはずです\footnote{ちなみにこの段階ではでないです。試してくれた方はごめんなさい。}。

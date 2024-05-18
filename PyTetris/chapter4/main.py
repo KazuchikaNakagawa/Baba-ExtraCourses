@@ -2,17 +2,22 @@ import pygame
 from tetris2 import Board
 
 def main():
-    # Create the board
+    # 作ったクラスを変数に入れてみます
     board = Board()
 
     # Initialize pygame
     pygame.init()
+
+    # ウィンドウのサイズはboardのwindow_size()メソッドで取得できることにします
+    # def window_size(self): の部分に対応しています
     screen = pygame.display.set_mode(board.window_size())
+
     pygame.display.set_caption("Tetris")
     clock = pygame.time.Clock()
 
     while True:
-        # Draw the board
+        # ボードを描画
+        # def draw(self, screen): の部分に対応しています
         board.draw(screen)
         
         # Handle events
