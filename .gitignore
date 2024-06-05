@@ -2,3 +2,4 @@
 *.dvi
 *.synctex.gz
 .DS_Store
+/*/hidden_source/
