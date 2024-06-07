@@ -503,17 +503,20 @@ OBlockクラスに、動ける範囲を計算する関数を追加します。
 さて、次にカーソルの動きを変更します。
 今までは無条件に動いていましたが、一度ブロックを受け取って動けるか
 どうかを判定してもらい、動けるなら動くようにします。
+
+\subsection{Cursorクラスを変更する}
 \lstinputlisting[caption={Cursorクラスの変更}, language=Python]{chapter6/ch6_3_3.py}
 これらの変更が終わると、main.pyにエラーが出ているはずです。
 今まではcursor.move\_right()のように書いていましたが、
 これからは引数としてboardとblockを渡す必要があるからです。
 もちろん、main関数で引数を渡すように変更しても良いのですが、
 少し見栄えが悪いので（プログラマとしては見栄えが悪いです）、変更を加えます。
-
+\subsection{Boardクラスを変更する}
 今回はカプセル化という方法で、BoardクラスがCursorをカプセルのように閉じ込めて、
 Board経由でCursorを操作するようにします。
 そこで、Boardクラスにmove\_right関数を追加し、Cursorのmove\_right関数を呼び出すようにします。
 \lstinputlisting[caption={Boardクラスの変更}, language=Python]{chapter6/ch6_3_4.py}
+\subsection{main関数の変更}
 最後に、main関数を変更して、cursorを使うのではなく、boardの移動機能を使うようにします。
 \lstinputlisting[caption={main関数の変更}, language=Python]{chapter6/ch6_3_5.py}
 これを実行すると、ブロックが右端に行かなくなります。
