@@ -1,0 +1,32 @@
+\chapter{ブロックの落下とランダムなブロックの生成}
+\section{ブロックの落下}
+今までのプログラムでは、ブロックが動くのはキー入力を受け取ったときだけでした。
+しかし、テトリスでは一定時間ごとにブロックが落ちてくるようになっています。
+今回は1秒に一度ブロックが落ちるようにしましょう。
+\subsection{1秒ごとに落とす}
+1秒を測るためには、時間を計測する必要があります。
+今回、main関数のwhile文は一秒間に60回実行されています。
+つまり、1秒を測るためには60回のループを数えればいいということです。
+\lstinputlisting[caption={main関数を変更する}, language=Python]{chapter9/ch9_1_1.py}
+これを実行すると、1秒ごとにブロックが落ちていくようになります。
+
+\subsection{ブロックを落とす}
+Boardクラスにdrop関数を追加します。
+dropとは、落とす、こぼす、という意味があります。
+落ちれなくなるところまで落とすという関数です。
+\lstinputlisting[caption={Boardクラスにdrop関数を追加する}, language=Python]{chapter9/ch9_1_2.py}
+また、main関数を変更して、スペースキーでブロックを落とせるようにします。
+\lstinputlisting[caption={main関数を変更する}, language=Python]{chapter9/ch9_1_3.py}
+きちんと動いているでしょうか。
+
+\section{ランダムなブロックの生成}
+今度はランダムにブロックを生成する機能を追加します。
+generate\_block関数を作り、その中でランダムにブロックを生成するようにします\footnote{generate: 生成する}。
+その関数は\_\_init\_\_関数の中で呼び出すと、最初のブロックがランダムになります。
+\lstinputlisting[caption={ランダムなブロックの生成}, language=Python]{chapter9/ch9_2_1.py}
+これで、ランダムなブロックが生成されるようになりました。
+mainでブロックを設定する必要がなくなったので、消してしまいましょう。
+\lstinputlisting[caption={main関数の変更}, language=Python]{chapter9/ch9_2_2.py}
+これで、ランダムなブロックが生成されるようになりました。
+しかし、ブロックが一番下まで落ちても、次のブロックに切り替わりません。
+次の章でその機能を追加します。

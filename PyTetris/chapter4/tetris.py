@@ -1,12 +1,10 @@
 # tetris using pygame
 import pygame
 
-# Constants
 WIDTH = 10
 HEIGHT = 22
 TILE_SIZE = 30
 
-# Colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 GRAY = (128, 128, 128)

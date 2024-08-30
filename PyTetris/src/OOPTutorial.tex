@@ -1,0 +1,172 @@
+\chapter{オブジェクト指向プログラミングへ}\label{ch:3}
+\section{オブジェクト指向プログラミング}
+\subsubsection{プログラミング言語界の主人公的存在、オブジェクト指向}
+今まで私たちは「変数」、「関数」を用いてプログラムを作ってきました。
+\begin{lstlisting}[caption=復習,label=sample, language=Python]
+# 変数の作り方
+名前 = "ATAI"
+
+# 関数の作り方
+def 関数名():
+    # その時にすることを書く
+    print("こんにちはよいお日和ですね")
+\end{lstlisting}
+変数はデータに名前をつけることで、関数は処理に名前をつけることでした\footnote{厳密には、変数とはデータの領域に名前をつけることです。}。
+オブジェクト指向プログラミングは主に「クラス」という「プログラムそのものに名前をつけたもの」を構成することで
+プログラムを作ります。クラスは「変数」と「関数」を持つことができます。つまり、どんなPythonファイルも一つのクラスにまとめることができます。
+\section{クラスの作り方}
+\subsection{クラスの作り方}
+クラスは以下のように作ります。Pythonファイルの中で何個でも作ることができます
+\footnote{しかし、みやすさの観点からクラスは1ファイルにつき2〜3個までにする人もいます。}。
+\newpage
+\begin{lstlisting}[caption=クラスの作り方,label=sample, language=Python]
+class クラス名:
+    ...
+\end{lstlisting}
+クラス名は作りたいクラスに応じて変えてください。...は省略しているわけではなく、
+「後で書きます」というちゃんとしたPythonのプログラムです。
+
+\subsection{クラスを変数に入れる}
+クラスは設計図のようなもので、実際に使うには\textbf{作って変数に入れる}必要があります
+\footnote{このような変数のことをインスタンスと呼んだりします。Pythonの場合、全ての変数は何かのインスタンスになるらしいです。}。
+\begin{lstlisting}[caption=クラスを変数に入れる,label=sample, language=Python]
+変数名 = クラス名()
+\end{lstlisting}
+\textbf{「クラスを作る」とは「クラス名()」と書くこと}です。作ったクラスは変数に入れないと
+次の行には捨てられています
+\footnote{捨てられていないこともあります。
+  PythonはARCと世代別GCの二種類を持っているらしく、クラスに循環参照がある場合はGCにより時間差で捨てられます}。
+なので、大体の場合は「変数名=クラス名()」と書くことが多いです。
+カッコの中に何が入るかは、クラスによって異なります。後で説明します。
+
+\subsubsection{関数と似てる？}
+クラスは関数と似ている部分があります。関数は使う前になるべく関係ないところで「def 関数名():」と書いて「宣言」
+\footnote{こういうものだよ、と決めること}しましたね。
+\begin{lstlisting}[caption=関数の作り方,label=sample, language=Python]
+def 関数名():
+  # 呼ばれた時にすることを書く
+  ...
+\end{lstlisting}
+実際に使うときは、その場所で「関数名()」と書きましたね。
+\begin{lstlisting}[caption=関数の呼び出し方,label=sample]
+関数名() # 「呼ばれた時にすること」が実行される
+\end{lstlisting}
+カッコの中には何かが入ったり入らなかったりしますが、関数を使うときは「関数名()」と書きました。
+似てますよね。プログラムが複雑になったときに
+宣言と使う場所を分離することでプログラムをみやすくするという考え方です。
+
+\section{クラスの中に変数を作る}
+\subsection{クラスの中に変数を作る}
+普通の変数の作り方と\textbf{ほぼ}同じです。
+\begin{lstlisting}[caption=クラスの中に変数を作る,label=sample, language=Python]
+class クラス名:
+    def __init__(self):
+        self.変数名 = 値
+\end{lstlisting}
+\_\_init\_\_関数は\textbf{クラスを作って変数に入れるときに自動で呼ばれます}。
+変数を作って入れることもできますし、printを書くとクラスをつくるたびに表示されるようにすることもできます。
+たとえば、教科書に「Mentorクラスを作って、中にageという変数を作る。ageには最初に20を入れる。」という文章があったら、
+\begin{lstlisting}[caption=Mentorクラスの作り方,label=sample, language=Python]
+class Mentor:
+    def __init__(self):
+        self.age = 20
+\end{lstlisting}
+こう書きましょう。\textbf{変数は一つだけでなく何個でも作れます}\footnote{パソコンの覚えられる量を超えない限り}。
+さらに、「nameという変数を作って、先生の名前を入れてみよう」という文章があったら、
+\begin{lstlisting}[caption=Mentorクラスの作り方,label=sample, language=Python]
+class Mentor:
+    def __init__(self):
+        self.age = 20
+        self.name = "先生の名前を入れる"
+\end{lstlisting}
+クラスはたくさん書くことで設計の仕方がわかっていくので、何度も書く→増やす→失敗する→改良するを繰り返して慣れていきましょう。
+
+\subsection{クラスの変数の中身がわからない場合}
+でも、先生の年齢がいつも20歳なのはちょっと変ですね。先生が常に20歳とは限りません。\textbf{クラスは設計図}なので設計段階ではわからない数値やデータもあります。
+変数に入れる値がまだわからない時は、引数にすれば\textbf{実際に作る時まで先延ばし}にすることができます。
+\begin{lstlisting}[caption=引数を使う場合,label=sample, language=Python]
+class Mentor:
+    def __init__(self, age, name):
+        self.age = age
+        self.name = name
+\end{lstlisting}
+このように書くことで、Mentorクラスを\textbf{作る時に年齢と名前を指定}することができます。
+\begin{lstlisting}[caption=Mentorクラスの作り方,label=sample, language=Python]
+# クラスを作る時に、年齢と名前を指定する
+mentor1 = Mentor(20, "A先生")
+\end{lstlisting}
+30歳の先生を作る場合は、
+\begin{lstlisting}[caption=Mentorクラスの作り方,label=sample, language=Python]
+# クラスを作る時に、年齢と名前を指定する
+mentor2 = Mentor(30, "B先生")
+\end{lstlisting}
+さっきのプログラム２つでは違う変数に同じクラスを作っていましたが、\textbf{クラスは設計図}なので、クラスを一度作っておくと、
+別のデータで別の変数に似たデータを入れられます。設計図を元にカスタマイズしながら量産できるということです。
+まだ便利さがわからないかもしれませんが、関数の引数とオブジェクト指向は
+便利さがわかりづらいランキング1位と2位なのでここは少し我慢してください\footnote{作者の個人の感想です}。
+
+\subsection{クラスの変数の中身を変更する}
+クラスの変数の中身を変更するには、以下のように書きます。
+\begin{lstlisting}[caption=クラスの変数の中身を変更する,label=sample, language=Python]
+  mentor3 = Mentor(40, "C先生")
+  mentor3.age = mentor3.age + 1
+\end{lstlisting}
+このように書くことで、mentor3の年齢を1歳増やすことができます。お誕生日おめでとうございます。
+\subsection{クラスの変数を使う}
+クラスの変数を使うには、以下のように書きます。
+\begin{lstlisting}[caption=クラスの変数を使う,label=sample, language=Python]
+  print(mentor3.age)
+\end{lstlisting}
+このように書くことで、mentor3の年齢を表示することができます
+\footnote{このようなインスタンスに対して「.」を使ってアクセスする変数をインスタンス変数といいます。}。
+普通の変数と同じように使えますね。変数の集まりがクラスと考える人たちもいます
+\footnote{厳密には変数を一つに集める機能はストラクチャというものにもあるので、「クラス＝変数の集まり」と覚えるのは不正確かもしれません}。
+
+\newpage
+\section{クラスの中に関数を作る}
+関数の作り方も普通の関数の作り方と\textbf{ほぼ}同じです。
+\begin{lstlisting}[caption=クラスの中に関数を作る,label=sample, language=Python]
+class クラス名:
+    def 関数名(self):
+        ...
+\end{lstlisting}
+引数にselfというものが入っています。これは実際に使うときには入れないので、
+「self, 欲しい引数（なければselfだけ）」と書くと覚えておきましょう
+\footnote{selfを書かなくても良い言語もありますし、作者個人はそうすべきだと思うのですが…}。
+たとえば、教科書に「Carクラスを作って、runという関数を作る。run関数は「走ります」と表示する」という文章があったら、
+\begin{lstlisting}[caption=Carクラスの作り方,label=sample, language=Python]
+class Car:
+    def run(self):
+        print("走ります")
+\end{lstlisting}
+こう書きましょう。\textbf{関数も何個でも作れます}し、引数を使うこともできます。
+\begin{lstlisting}[caption=引数を使う場合,label=sample, language=Python]
+class Car:
+    def run(self):
+        print("走ります")
+    def set_speed(self, speed):
+        print("時速", speed, "kmで走ります")
+\end{lstlisting}
+テキストを読んでいて「クラスの中に〜」という文章があってよくわからない場合はこの章に戻ってきてください。
+ちなみにCarクラスのrun関数を使うには、
+\begin{lstlisting}[caption=Carクラスの使い方,label=sample, language=Python]
+car = Car()
+car.run()
+\end{lstlisting}
+と書きます。\textbf{クラスは設計図}なので、一度変数にしないと使えません。
+run関数は引数selfがあったので「run(何か)」としなければならない気もしますが、
+実際に使うときは「car.run()」と書くだけで大丈夫です。
+\footnote{このように、インスタンスに「.」をつけて呼ぶことのできる関数をインスタンスメソッドと呼びます。}
+
+\section{まとめ}
+クラスは「変数」と「関数」\footnote{正確にはメソッドと呼ばれます。メソッド＝手順、手続き}を中に持つことができます。クラスは設計図のようなもので、
+実際に使うには変数に入れる必要があります。変数に入れるときは「変数名=クラス名()」のようにしますが、
+クラスによってはカッコの中に何かを入れる必要があります。
+
+\subsubsection{先生と調べよう}
+答えがないものもあります。暇な時に調べてみてください。
+\begin{itemize}
+  \item オブジェクト指向プログラミングの良いところと悪いところは？
+  \item Pythonの\_\_init\_\_関数などにある\ruby[g]{self}{自分自身}って何？
+  \item Pythonのクラスに名前をつけるときのルールは？
+\end{itemize}

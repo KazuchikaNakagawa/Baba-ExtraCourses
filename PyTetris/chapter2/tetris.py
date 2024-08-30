@@ -1,15 +1,26 @@
 # tetris using pygame
 import pygame
 
-# Constants
+# 定数（決まっている数）の定義
+# テトリスの盤面は横10マス、縦22マス
 WIDTH = 10
 HEIGHT = 22
+
+# 1マスの大きさをピクセルで表す
 TILE_SIZE = 30
 
-# Colors
+# 色の定義
+# コンピュータは色を赤、緑、青の強さを3つの値として表します
+# 光は全色混ぜると白になります
 WHITE = (255, 255, 255)
+
+# 光っていないと黒です
 BLACK = (0, 0, 0)
+
+# 白と黒の間、すなわち灰色です
 GRAY = (128, 128, 128)
+
+# どんな色になるか考えてみましょう
 LIGHT_GRAY = (200, 200, 200)
 CYAN = (0, 255, 255)
 BLUE = (0, 0, 255)
@@ -32,7 +43,6 @@ def main():
     """
     board = [[BLACK for _ in range(WIDTH)] for _ in range(HEIGHT)]
 
-    # Initialize pygame
     # なぜ呼ぶのかは考えなくてOK
     pygame.init()
 

@@ -1,7 +1,5 @@
 import pygame
 from tetris import Board
-# chapter 6 ブロックを動かす
-# OBlockをインポートします
 # chapter 7 TBlock
 # TBlockをインポートします
 from tetris import OBlock, TBlock
@@ -16,9 +14,6 @@ def main():
     pygame.display.set_caption("Tetris")
     clock = pygame.time.Clock()
 
-    # chapter 6 ブロックを動かす
-    # とりあえずOブロックを作っておきます
-    # 将来はランダムに作ります
     # chapter 7 Tブロック
     # 試しにTブロックに変更してみましょう
     board.moving_block = """クラスを変数につくる"""()

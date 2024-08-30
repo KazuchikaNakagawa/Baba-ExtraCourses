@@ -1,0 +1,70 @@
+\chapter{テトリスでクラスを使おう}
+\section{main関数の役割を分担する}
+クラスを設計するときは、まずクラスの役割を決めます。
+ひとまず、\textbf{盤面を管理する}クラスを作ってみましょう。
+どんな機能、変数を持っているかはこちらで決めました\footnote{将来は自分で設計することになります。うまくできないと怒られます。}。
+\begin{itemize}
+  \item 盤面のブロックサイズを表す変数
+  \item 盤面のブロックの状態を表すリスト
+  \item 盤面をスクリーンに描画する関数
+  \item 盤面のブロックサイズから画面の大きさを計算する関数
+\end{itemize}
+内容が決まってきたらクラスを作ります。
+\section{Boardクラスを定義する}
+今回はクラスを別ファイルに書いて、インポートする方法にしてみます。
+建築でfunctions.pyとmain.pyに分かれていたのと同じような感じです。
+まずはこれだけ作ってみましょう。ファイル名は「tetris.py」とし、以下のように書いてください。
+\lstinputlisting[title=teris.py, language=Python]{chapter4/tetris.py}
+draw関数がscreenを引数にとっているのは、建築でmcを引数にとっていたのと似ています。
+Boardクラスは変数にscreenを持っていないので、画面に書くときは一度\textbf{画面を借りる}必要があります。
+試しに4行目の「, screen」を消して実行してみてください。「screen is undefined」みたいなエラーが出るはずです\footnote{ちなみにこの段階ではでないです。試してくれた方はごめんなさい。}。
+\section{main関数を書き換える}
+\subsection{Boardクラスを使ってmain関数を書く}
+ここまで読んだら、main.pyを作ります。
+\lstinputlisting[title={main.py}, language=Python]{chapter4/main.py}
+main関数が少し短くなったと思います。main関数が今までやっていた「盤面に合わせてブロックを書く→線を引く」という
+処理をBoardクラス（とそれが入った変数board）に分担したからです\footnote{ここが大事なのでテキストを読んでいない人はこの文を探してみてね}。
+でも、この状態ではまだ動きません。tetris.pyのクラスの中で作った関数がまだ「...」のまま残っていますね。実装しましょう。
+\subsection{Boardクラスを実装する}
+\lstinputlisting[title={tetris.pyを完成させる}, language=Python]{chapter4/tetris2_2.py}
+実行すると、一章と同じように動くはずです。
+
+\subsection{ブロックのサイズを変更できるようにする}
+ついでに、ブロックのサイズをmain関数から変更できるようにしましょう。
+\lstinputlisting[title={tetris.pyを改造する}, language=Python]{chapter4/tetris2_3.py}
+\lstinputlisting[title={main.pyを改造する}, language=Python]{chapter4/main2.py}
+「{board = Board(tile\_size=30)}」を変えることで、一マスのサイズを変更できます。
+ここまでできたら完璧です。
+
+\subsubsection{先生と考えよう}
+どちらも正解がないので、暇な時に考えてみてください。
+\begin{itemize}
+  \item Boardクラスの中にscreenを作らなかったのはなぜ？
+  \item main関数の残された役割は？
+\end{itemize}
+
+\newpage
+\section{クラスの設計を練習する}
+\subsection{練習問題1}
+まずは以下のプログラムを動かしてみましょう。その後、クラスを使って書き換えてみてください。
+\lstinputlisting[title={練習問題1}, language=Python]{chapter4/bank_no_class.py}
+このwhile True:では、入力、コマンド確認、残高確認、出力の機能がすべて混ざっています。どういうふうに分離するといいでしょうか？
+\newpage
+\subsubsection{例}
+\lstinputlisting[title={練習問題1の解答例}, language=Python]{chapter4/bank.py}
+残高が足りているか確認するのは口座の役割に分担しました。また、残高と名前は別の変数でなく、一つのクラスにまとめました。
+同じものに関する情報（変数）は一つのクラスにまとめるのがおすすめです。
+
+\subsection{練習問題2}
+まずは以下のプログラムを動かしてみましょう。ゲームになっているので先生と一緒に遊んでみてください。
+原因が分かり次第修正します。
+\lstinputlisting[title={練習問題2}, language=Python]{chapter4/memory_game_no_class.py}
+クラスに分けるとどうなるでしょうか。作るクラスが一つとは限りません
+\footnote{2つ以上が正解と言いたいわけではありません。メンターさんは学校の先生と違ってプロじゃないので顔から考えていることがバレやすいです。
+  でも、心を読まれて答えを見つけられると微妙な気持ちになります。担当のメンターさんも経験しているかもしれません。}。
+
+\newpage
+\subsubsection{例}
+\lstinputlisting[title={練習問題2の解答例}, language=Python]{chapter4/memory_game.py}
+クラスは複雑になりますが、42〜48行目は短く、分かりやすくなっています。Player()とするだけで入力欄が開くのは便利ですね
+\footnote{でも、設計的にはダメな場合もありますので安易にこうしてはいけません}。

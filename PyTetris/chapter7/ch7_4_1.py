@@ -1,16 +1,11 @@
 def main():
-    # Create the board
     board = Board(tile_size=30)
 
-    # Initialize pygame
     pygame.init()
     screen = pygame.display.set_mode(board.window_size())
     pygame.display.set_caption("Tetris")
     clock = pygame.time.Clock()
 
-    # chapter 6 ブロックを動かす
-    # とりあえずOブロックを作っておきます
-    # 将来はランダムに作ります
     board.moving_block = TBlock()
 
     while True:
