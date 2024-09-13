@@ -63,11 +63,11 @@ Tブロックにも動けるかどうかを判定する機能を追加しまし�
 TブロックにもOブロックと同じように、動けるかどうかを判定する機能を追加します。
 \lstinputlisting[caption={Tブロックに動けるかどうかを判定する機能を追加}, language=Python]{chapter7/ch7_3_1.py}
 
-\subsection{あれ、回転は？}
+\subsection{回転の実装}
 main関数でキー入力を受け取っていますので、main関数を実行して回転キーを設定しましょう。
 
 \lstinputlisting[caption={main関数で回転する}, language=Python]{chapter7/ch7_4_1.py}
-書き終えたら実行してみましょう。ひとまずお疲れ様でした。でも、まだ終わりではありません。
+書き終えたら実行してみましょう。
 \begin{figure}[h]
   \centering
   \includegraphics[width=50mm]{images/CH7_4.png}
@@ -76,14 +76,6 @@ main関数でキー入力を受け取っていますので、main関数を実行
 
 回転によりはみ出してしまうことがありますね。これは移動と同じで回転できない状況があるのに、それを検知できずに回転しているからです。
 
-\subsubsection{Q: この教材、いきあたりばったりで作ってないですか？}
-多くのメンターさんが共感してくれると思いますが、
-基本的にプログラムは一発で動きません。さらに残酷なことに、頑張って書いた時ほど、動かないものです。
-ここまできたみなさんには、同じプログラマとして、「せっかく頑張ったのになんでやねん」というこのガッカリ感を
-味わってみて欲しいです。
-
-実行する前にこうなることが予期できた人は素晴らしいです。ぜひ、次回以降もこのような予測をしていってください。
-
 \section{回転できるか判定する関数をつくる}
 それでは、回転について判定する関数を作ってみましょう。
 いくつか方法が考えられますが、今回は、回転した後の座標を計算して、その座標が盤面と衝突しないかどうかを判定する方法を取ります。
@@ -91,7 +83,7 @@ main関数でキー入力を受け取っていますので、main関数を実行
 以下のように書いてみましょう。戻り値はbool型、すなわちTrueかFalseです。
 可能だと分かったらその時点でreturn True、逆に不可能だと分かったらreturn Falseします。
 \lstinputlisting[caption={回転できるか判定する関数をつくる}, language=Python]{chapter7/ch7_5_1.py}
-ちなみに、もっと賢い方法を思いついた人は、それを書いて試してみましょう。
+もっと良い方法を思いついた人は、それを書いて試してみましょう。
 この教材では直感的な方法をとっています。
 
 次に、\textbf{判定をしてから回転する}部分を作ります。
@@ -124,8 +116,9 @@ pygame 2.0.1 (SDL 2.0.14, Python 3.8.3)
 Hello from the pygame community. https://www.pygame.org/contribute.html
 \end{verbatim}
 こんな表示を見たことはありませんか？
-おそらく、pygameのファイルにはこんなのが書いてあるはずです
+おそらく、pygameのファイルにはこんなプログラムが書いてあるはずです
 \begin{lstlisting}[caption=pygameのファイルの一部,language=Python]
+if __name__ != "__main__":
   print("pygame 2.0.1 (SDL 2.0.14, Python 3.8.3)")
   print("Hello from the pygame community. https://www.pygame.org/contribute.html")
 \end{lstlisting}
